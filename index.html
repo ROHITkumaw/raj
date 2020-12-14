@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" />
+    
+    <style>
+        *, *::after, *::before {
+    box-sizing: border-box;
+  }
+  
+  .modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%) scale(0);
+    transition: 200ms ease-in-out;
+    border: 1px solid black;
+    border-radius: 10px;
+    z-index: 10;
+    background-color: white;
+    width: 500px;
+    max-width: 80%;
+  }
+  
+  .modal.active {
+    transform: translate(-50%, -50%) scale(1);
+  }
+  
+  .modal-header {
+    padding: 10px 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid black;
+  }
+  
+  .modal-header .title {
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-header .close-button {
+    cursor: pointer;
+    border: none;
+    outline: none;
+    background: none;
+    font-size: 1.25rem;
+    font-weight: bold;
+  }
+  
+  .modal-body {
+    padding: 10px 15px;
+  }
+ 
+  .button2{
+    margin-right : -275px;
+    padding: 3px;
+    
+}
+.btn1,.btn2,.btn3,.btn4{
+
+  background-color: orange;
+
+}
+.btn3{
+  float: right;
+  margin-right : 150px;
+
+}
+    </style>
+</head>
+<body>
+    <button data-modal-target="#modal" class="btn1">Add Button</button>
+    <button data-modal-target="#modal1" class="btn2">Edit Button</button>
+   
+     
+    <div class="modal" id="modal">
+        <div class="modal-header">
+          <div class="title"><h3 class="name">Add Order</h3></div>  
+          
+          <button data-close-button class="close-button" >&times;</button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <br>
+              Order Date: <br> <input type="date" name="name">
+              <br>
+              Approved By:<br> <input type="text" name="subject">
+              <br>
+              Order ID:<br> <input type="number" name="rank">
+              <br>
+              Company Name:<br> <input type="text" name="rank">
+              <br>
+              Company Id ID:<br> <input type="number" name="rank">
+              <br>
+              Order Approved:<br> <input type="text" name="rank">
+              <br>
+              Approved Status:<br> <input type="text" name="rank">
+              <br>
+              Notes:<br> <input type="text" name="rank">
+              <br>
+              <button class="btn3">Add Button</button>
+           </form>
+        </div>
+      </div>
+      <div id="overlay"></div>
+  
+      <!-- Here comes with the edit button -->
+      <div class="modal" id="modal1">
+        <div class="modal-header">
+          <div class="title">Edit Button</div>  
+          <button data-close-button class="close-button">&times;</button>
+        </div>
+        <div class="modal-body">
+          <form>
+            <br>
+              Order Date: <br> <input type="date" name="name">
+              <br>
+              Approved By:<br> <input type="text" name="subject">
+              <br>
+              Order ID:<br> <input type="number" name="rank">
+              <br>
+              Company Name:<br> <input type="text" name="rank">
+              <br>
+              <button class="btn4">Edit Button</button>
+           </form>
+        </div>
+      </div>
+</body>
+<script>
+    const openModalButtons = document.querySelectorAll('[data-modal-target]') // this is selector 
+const closeModalButtons = document.querySelectorAll('[data-close-button]')
+const overlay = document.getElementById('overlay') // only select id samjhi ra pagli 
+const submitElement = document.querySelector(".btn3"); // select both id and class chutiya 
+
+// this is just a fancy function dont put this line chutiya panjiyar #hrc chutiya 
+submitElement.addEventListener( 'click',function(){
+  console.log("Hello Element");
+});
+
+
+// openModalButtons.forEach(button => { this is es6 function and down is es5 function 
+//   button.addEventListener('click', () => {
+//     const modal = document.querySelector(button.dataset.modalTarget)
+//     openModal(modal) 
+//   })
+// })
+openModalButtons.forEach(function(button) {
+  button.addEventListener('click', function(){
+    const modal = document.querySelector(button.dataset.modalTarget)
+    openModal(modal) 
+  })
+})
+
+overlay.addEventListener('click', function() {
+  const modals = document.querySelectorAll('.modal.active')
+  modals.forEach(function(modal) {
+    closeModal(modal)
+  })
+})
+
+// closeModalButtons.forEach(button => {
+//   button.addEventListener('click', () => {
+//     const modal = button.closest('.modal')
+//     closeModal(modal)
+//   })
+// })
+closeModalButtons.forEach(function(button) {
+  button.addEventListener('click', function(){
+    const modal = button.closest('.modal')
+    closeModal(modal)
+  })
+})
+
+function openModal(modal) {
+  if (modal == null) return
+  modal.classList.add('active')
+  overlay.classList.add('active')
+}
+
+function closeModal(modal) {
+  if (modal == null) return
+  modal.classList.remove('active')
+  overlay.classList.remove('active')
+}
+
+
+</script>
+</html>
